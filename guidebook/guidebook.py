@@ -3,6 +3,7 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import plotly as px
+import altair as alt
 
 import base64
 from io import BytesIO
@@ -166,6 +167,17 @@ The only way to truly understand how magical Streamlit is to play around with it
 But if you need to be convinced first, then here is the **4 minute introduction** to Streamlit!
 Afterwards you can explore examples in the Gallery and go to the [Streamlit docs](https://streamlit.io/docs/) to get started.
 """)
+
+st.markdown('----')
+st.title('Display some data')
+df = pd.DataFrame(
+    np.random.randn(200, 3),
+    columns=['a', 'b', 'c'])
+
+c = alt.Chart(df).mark_circle().encode(
+     x='a', y='b', size='c', color='c', tooltip=['a', 'b', 'c'])
+
+st.write(c)
 
 st.markdown('----')
 st.button('Click here')
