@@ -180,8 +180,11 @@ with st.echo():
 
     
 with st.echo():
-    data.sort_values(by='Date', inplace=True)
+    data['Date'] =pd.to_datetime(data.Date)
+    data.sort_values(by='Date', inplace=True) # This now sorts in date order
     st.dataframe(data)
+    fig = px.line(data, x='Date', y='Open')
+    st.plotly_chart(fig)
     
 
 st.header('Get Opening Stock Price for Forecasts')   
