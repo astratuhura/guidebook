@@ -164,7 +164,7 @@ with st.echo():
 st.write('Step #2: load data with Pandas library')
 
 with st.echo():
-    data   = pd.read_csv('stocks.csv')
+    data   = pd.read_csv('./stocks.csv')
     st.dataframe(data)
 
 st.markdown('----')
