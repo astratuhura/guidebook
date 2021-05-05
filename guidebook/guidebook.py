@@ -164,7 +164,16 @@ with st.echo():
 st.write('Step #2: load data with Pandas library')
 
 with st.echo():
-    data   = pd.read_csv('./stocks.csv')
+    @st.cache
+    def load_dataset(data_link):
+        dataset = pd.read_csv(data_link)
+        return dataset
+
+
+stocks_data = 'https://raw.githubusercontent.com/deusexmagicae/guidebook/main/guidebook/stocks.csv'
+data = load_dataset(stocks_data)
+
+with st.echo():
     st.dataframe(data)
 
 st.markdown('----')
