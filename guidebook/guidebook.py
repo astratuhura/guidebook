@@ -148,6 +148,19 @@ for idx in in_data:
     _container.write(idx)
 st.markdown('----')
 
+st.header('Types of Machine Learning')
+st.write("""
+Using algorithms to solve business problems through data processing, interpretation and analysis, and has the following sub-categories:
+- Supervised Learning: learns to map input data to target variables
+- Unsupervised Learning: describes and extract relationships in data
+- Semi-supervised Learning: a combination of both supervised and unsupervised learning algorithms
+- Reinforcement Learning: interacts with the environment
+- Deep Learning:
+""")
+
+
+
+st.markdown('----')
 # example of forecasting
 st.header("Forecasting Stock Price Movements with Facebook Prophet")
 st.write('Step #1: import Python libraries')
