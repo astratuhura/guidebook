@@ -217,9 +217,15 @@ with st.echo():
 st.header('Plot the forecast')
 with st.echo():
     fig1 = model.plot(forecast)
+    fig2 = model.plot_components(forecast)
 
-fig1    
+st.write(fig1)
+st.write(fig2)
 
+prophet_chart = alt.Chart(data).mark_circle().encode(
+     x='Date', y='Open', tooltip=['Date', 'Open'])
+
+st.write(prophet_chart)
 
 st.markdown('----')
 path = st.text_input('CSV file path')
