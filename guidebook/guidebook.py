@@ -146,6 +146,26 @@ in_data =  ['The data to be transformed by the  algorithm', 'What data is needed
 _container = st.beta_container()
 for idx in in_data:
     _container.write(idx)
+st.markdown('----')
+
+# example of forecasting
+st.header("Forecasting Stock Price Movements with Facebook Prophet")
+st.write('Step #1: import Python libraries')
+
+with st.echo():
+    import urllib.request
+    import pandas as pd
+    import json
+    import requests
+    import datetime as dt
+    import plotly.express as px
+    from prophet import Prophet
+
+st.write('Step #2: load data with Pandas library')
+
+with st.echo():
+    data   = pd.read_csv('stocks.csv')
+    st.dataframe(data)
 
 st.markdown('----')
 path = st.text_input('CSV file path')
