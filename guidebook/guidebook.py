@@ -175,7 +175,9 @@ data = load_dataset(stocks_data)
 
 with st.echo():
     st.dataframe(data)
-    
+    fig = px.line(data, x='Date', y='Open')
+    st.plotly_chart(fig)
+
     
 with st.echo():
     data.sort_values(by='Date', inplace=True)
