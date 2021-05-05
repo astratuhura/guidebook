@@ -175,6 +175,46 @@ data = load_dataset(stocks_data)
 
 with st.echo():
     st.dataframe(data)
+    
+    
+with st.echo():
+    data.sort_values(by='Date', inplace=True)
+    st.dataframe(data)
+    
+
+st.header('Get Opening Stock Price for Forecasts')   
+with st.echo():
+    data_forecast = data[['Date','Open']]
+    st.dataframe(data_forecast)     
+
+st.header('Prepare data for Prophet')
+with st.echo():
+    data_forecast.rename(columns={'Date':'ds', 'Open':'y'}, inplace=True)
+    data_forecast.sort_values(by='ds', inplace=True)
+    st.dataframe(data_forecast)
+    
+
+st.header('Create the model and train Prophet')    
+with st.echo():
+    model = Prophet()
+    model.fit(data_forecast)
+    
+st.header('How far into the future to forecast')    
+with st.echo():
+    future = model.make_future_dataframe(periods=365)
+    st.dataframe(future)
+
+st.header('Create the forecasts')
+with st.echo():
+    forecast = model.predict(future)
+    st.write(forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']])
+
+st.header('Plot the forecast')
+with st.echo():
+    fig1 = model.plot(forecast)
+
+fig1    
+
 
 st.markdown('----')
 path = st.text_input('CSV file path')
